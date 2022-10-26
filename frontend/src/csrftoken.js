@@ -1,25 +1,25 @@
-import React from 'react';
+import React from 'react'
 
-function getCookie(name) {
-  var cookieValue = null;
+function getCookie (name) {
+  let cookieValue = null
   if (document.cookie && document.cookie !== '') {
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-      var cookie = cookies[i].replace(' ', '');
+    const cookies = document.cookie.split(';')
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].replace(' ', '')
       if (cookie.substring(0, name.length + 1) === (name + '=')) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+        break
       }
     }
   }
-  return cookieValue;
+  return cookieValue
 }
 
 const CSRFToken = () => {
-  const csrftoken = getCookie('csrftoken');
-  return(
+  const csrftoken = getCookie('csrftoken')
+  return (
     <input type="hidden" name="csrfmiddlewaretoken" value={csrftoken}/>
   )
-};
+}
 
-export default CSRFToken;
+export default CSRFToken

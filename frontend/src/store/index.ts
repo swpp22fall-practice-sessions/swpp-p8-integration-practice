@@ -1,11 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
-import heroReducer from "./slices/hero";
+import { configureStore } from '@reduxjs/toolkit'
+import heroReducer from './slices/hero'
 
 export const store = configureStore({
   reducer: {
-    hero: heroReducer,
-  },
-});
+    hero: heroReducer
+  }
+})
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
