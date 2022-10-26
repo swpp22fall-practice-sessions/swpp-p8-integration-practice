@@ -2,6 +2,9 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "..";
 
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
+
 export interface HeroType {
   id: number;
   name: string;
@@ -23,17 +26,14 @@ export const fetchHeros = createAsyncThunk("hero/fetchHeros", async () => {
   return response.data;
 });
 
-export const fetchHero = createAsyncThunk(
-  "hero/fetchHero",
-  async (id: HeroType["id"], { dispatch }) => {
-    const response = await axios.get(`/api/hero/info/${id}/`);
-    return response.data ?? null;
-  }
-);
+export const fetchHero = createAsyncThunk("hero/fetchHero", async (id: HeroType["id"], { dispatch }) => {
+  const response = await axios.get(`/api/hero/info/${id}/`);
+  return response.data ?? null;
+});
 
 export const postHero = createAsyncThunk(
   "hero/postHero",
-  async (hero: Pick<HeroType, "name" | "age" >, { dispatch }) => {
+  async (hero: Pick<HeroType, "name" | "age">, { dispatch }) => {
     const response = await axios.post("/api/hero/info/", hero);
     dispatch(heroActions.addHero(response.data));
   }
@@ -45,15 +45,10 @@ export const heroSlice = createSlice({
   reducers: {
     getAll: (state, action: PayloadAction<{ heros: HeroType[] }>) => {},
     getHero: (state, action: PayloadAction<{ targetId: number }>) => {
-      const target = state.heros.find(
-        (hero) => hero.id === action.payload.targetId
-      );
+      const target = state.heros.find((hero) => hero.id === action.payload.targetId);
       state.selectedHero = target ?? null;
     },
-    addHero: (
-      state,
-      action: PayloadAction<{ name: string; age: string }>
-    ) => {
+    addHero: (state, action: PayloadAction<{ name: string; age: string }>) => {
       const newHero = {
         id: state.heros[state.heros.length - 1].id + 1, // temporary
         name: action.payload.name,
