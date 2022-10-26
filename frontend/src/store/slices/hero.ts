@@ -1,6 +1,9 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
-import { RootState } from "..";
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { RootState } from '..';
+
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 export interface HeroType {
   id: number;
@@ -18,29 +21,29 @@ const initialState: HeroState = {
   selectedHero: null,
 };
 
-export const fetchHeros = createAsyncThunk("hero/fetchHeros", async () => {
-  const response = await axios.get<HeroType[]>("/api/hero/info/");
+export const fetchHeros = createAsyncThunk('hero/fetchHeros', async () => {
+  const response = await axios.get<HeroType[]>('/api/hero/info/');
   return response.data;
 });
 
 export const fetchHero = createAsyncThunk(
-  "hero/fetchHero",
-  async (id: HeroType["id"], { dispatch }) => {
+  'hero/fetchHero',
+  async (id: HeroType['id'], { dispatch }) => {
     const response = await axios.get(`/api/hero/info/${id}/`);
     return response.data ?? null;
   }
 );
 
 export const postHero = createAsyncThunk(
-  "hero/postHero",
-  async (hero: Pick<HeroType, "name" | "age" >, { dispatch }) => {
-    const response = await axios.post("/api/hero/info/", hero);
+  'hero/postHero',
+  async (hero: Pick<HeroType, 'name' | 'age'>, { dispatch }) => {
+    const response = await axios.post('/api/hero/info/', hero);
     dispatch(heroActions.addHero(response.data));
   }
 );
 
 export const heroSlice = createSlice({
-  name: "hero",
+  name: 'hero',
   initialState,
   reducers: {
     getAll: (state, action: PayloadAction<{ heros: HeroType[] }>) => {},
@@ -50,10 +53,7 @@ export const heroSlice = createSlice({
       );
       state.selectedHero = target ?? null;
     },
-    addHero: (
-      state,
-      action: PayloadAction<{ name: string; age: string }>
-    ) => {
+    addHero: (state, action: PayloadAction<{ name: string; age: string }>) => {
       const newHero = {
         id: state.heros[state.heros.length - 1].id + 1, // temporary
         name: action.payload.name,
