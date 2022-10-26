@@ -2,6 +2,9 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "..";
 
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
 export interface HeroType {
   id: number;
   name: string;
@@ -26,6 +29,8 @@ export const fetchHeros = createAsyncThunk("hero/fetchHeros", async () => {
 export const fetchHero = createAsyncThunk(
   "hero/fetchHero",
   async (id: HeroType["id"], { dispatch }) => {
+    // 이 request를 보내는데 애초에 backend가 포트 8000번으로 설정되어 있다는 사실을 알 수가 없음.
+    // 그래서 404 Not Found 같은 에러가 발생
     const response = await axios.get(`/api/hero/info/${id}/`);
     return response.data ?? null;
   }
