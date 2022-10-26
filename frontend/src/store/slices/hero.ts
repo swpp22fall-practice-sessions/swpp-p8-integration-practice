@@ -8,6 +8,9 @@ export interface HeroType {
   age: string;
 }
 
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
 export interface HeroState {
   heros: HeroType[];
   selectedHero: HeroType | null;
