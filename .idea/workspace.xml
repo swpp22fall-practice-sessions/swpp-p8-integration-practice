@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c991ede3-0a97-4d08-944c-4198944d1d58" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/slices/hero.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/slices/hero.ts" afterDir="false" />
-    </list>
+    <list default="true" id="c991ede3-0a97-4d08-944c-4198944d1d58" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +39,7 @@
       <updated>1666777470110</updated>
       <workItem from="1666777471332" duration="1762000" />
       <workItem from="1666779813938" duration="2013000" />
-      <workItem from="1666781923897" duration="108000" />
+      <workItem from="1666781923897" duration="152000" />
     </task>
     <servers />
   </component>
