@@ -6,6 +6,11 @@ jobs:
   include:
     - language: python
       python: "3.9.6"
+      addons:
+        sonarcloud:
+          organization: "swpp22fall-practice-sessions"
+          token:
+            secure: "ei7dpU+zj5m6aV5LuaSqIUihBypczrQKHhu83JpAkc6CUjZsUBEJqjorg+EftQBf9RUuv7lT6nhEjGsP5oXJ2NPfBwyQf4sphyGnLfFCo4XQkJcydmcwpD6qP6zBOUA5u2Gn5iFXWHjHXzBbohA28CXO2YK2qir5czUBD4yfsFoXn9P3otU6u2pt9gVlgUJK+kauAC/nJm4yOMS/LSjpG3h/1OCAx1GWIm4SbNw32H3jXATKOeK84GqlN2Wx0Nz3Hdwev+2VUKDUAgWsBQoMrvnwJuZfPKXEEn2ffzUiI1vniYao4TVOMO988gboaaI8OGqaQ9NJ7KbgOJiU+w9i6K5D59RDobNhEFRgWWrju/lBdnuyWRsXGr4PArT3gJ/Rlz2qmgeh3DvbAjndwYTJOuEZOMF46Z/coEDH1wJam8wHirYtTsAW84MKkMRAjnwG4J/Cgu/9VvJHOplmckQfdRzmwv12/hblWqo0xQy2rpSjXc+pDLsgYx/9+R2L1CnxxOjN2WNtsymV8zsZZSCuDyDRt6s6coqkVZXD+/J+Q2vA6gMRjcT7US/riC9/ptHUiR/6KFiUFVoKvpw8XAqmIkxBJ6YiG+9OOKY0SRRuOhzqcS22tmny2YluADNcDtKyDLdMaWayOVxhl6QdtKEpuEkeHSyuPWhnMOKtve993no="
       install:
         - cd backend
         - pip install -r requirements.txt
@@ -13,6 +18,7 @@ jobs:
         - pylint **/*.py --load-plugins pylint_django
         - coverage run --source='.' manage.py test
         - coverage xml
+        - cd .. && sonar-scanner
 
     - language: node_js
       node_js: 14
