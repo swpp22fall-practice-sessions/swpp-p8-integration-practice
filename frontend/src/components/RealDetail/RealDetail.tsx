@@ -1,19 +1,19 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { AppDispatch } from "../../store";
-import { selectHero, fetchHero } from "../../store/slices/hero";
-import "./RealDetail.css";
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { AppDispatch } from '../../store'
+import { selectHero, fetchHero } from '../../store/slices/hero'
+import './RealDetail.css'
 
 const HeroDetail = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch<AppDispatch>();
-  const heroState = useSelector(selectHero);
+  const { id } = useParams()
+  const dispatch = useDispatch<AppDispatch>()
+  const heroState = useSelector(selectHero)
 
   useEffect(() => {
-    dispatch(fetchHero(Number(id)));
+    dispatch(fetchHero(Number(id)))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [id])
 
   return (
     <div className="HeroDetail">
@@ -26,6 +26,6 @@ const HeroDetail = () => {
         <div className="right">{heroState.selectedHero?.age}</div>
       </div>
     </div>
-  );
-};
-export default HeroDetail;
+  )
+}
+export default HeroDetail

@@ -1,9 +1,9 @@
-import './Hero.css';
+import './Hero.css'
 
 interface IProps {
-  name: string;
-  age: string;
-  clickDetail?: React.MouseEventHandler<HTMLDivElement>; // Defined by React
+  name: string
+  age: string
+  clickDetail?: React.MouseEventHandler<HTMLDivElement> // Defined by React
 }
 
 const Hero = (props: IProps) => {
@@ -13,7 +13,7 @@ const Hero = (props: IProps) => {
         {props.name}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero
