@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "..";
 
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 export interface HeroType {
   id: number;
   name: string;
@@ -33,7 +35,7 @@ export const fetchHero = createAsyncThunk(
 
 export const postHero = createAsyncThunk(
   "hero/postHero",
-  async (hero: Pick<HeroType, "name" | "age" >, { dispatch }) => {
+  async (hero: Pick<HeroType, "name" | "age">, { dispatch }) => {
     const response = await axios.post("/api/hero/info/", hero);
     dispatch(heroActions.addHero(response.data));
   }
@@ -43,7 +45,7 @@ export const heroSlice = createSlice({
   name: "hero",
   initialState,
   reducers: {
-    getAll: (state, action: PayloadAction<{ heros: HeroType[] }>) => {},
+    getAll: (state, action: PayloadAction<{ heros: HeroType[] }>) => { },
     getHero: (state, action: PayloadAction<{ targetId: number }>) => {
       const target = state.heros.find(
         (hero) => hero.id === action.payload.targetId
