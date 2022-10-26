@@ -2,6 +2,9 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "..";
 
+axios.default.xsrfCookieName = "csrftoken";
+axios.default.xsrfHeaderName = "X-CSRFToken";
+
 export interface HeroType {
   id: number;
   name: string;
