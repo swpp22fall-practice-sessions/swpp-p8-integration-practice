@@ -12,7 +12,7 @@ function getCookie(name) {
       }
     }
   }
-  return cookieValue;
+  return cookieValue; 
 }
 
 const CSRFToken = () => {
