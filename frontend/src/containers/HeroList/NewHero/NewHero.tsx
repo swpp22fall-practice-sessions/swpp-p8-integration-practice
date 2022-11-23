@@ -6,7 +6,7 @@ import { AppDispatch } from "../../../store";
 import { postHero } from "../../../store/slices/hero";
 import "./NewHero.css";
 
-export default function NewHero() {
+export default function NewHero () {
   const [name, setName] = useState<string>("");
   const [age, setAge] = useState<string>("");
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -40,7 +40,7 @@ export default function NewHero() {
           value={age}
           onChange={(event) => setAge(event.target.value)}
         />
-        <button onClick={() => postHeroHandler()}>Submit</button>
+        <button onClick={async () => await postHeroHandler()}>Submit</button>
       </div>
     );
   }

@@ -17,8 +17,15 @@ module.exports = {
     project: ['./tsconfig.json']
   },
   plugins: [
-    'react'
+    'react', 'react-hooks'
   ],
   rules: {
+    '@typescript-eslint/space-before-blocks': 'off',
+    '@typescript-eslint/quotes': 'off',
+    '@typescript-eslint/semi': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    'react/react-in-jsx-scope': 'off'
+    // 'space-before-blocks': 'off'
   }
 }
