@@ -2,20 +2,23 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "..";
 
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
 export interface HeroType {
-  id: number;
-  name: string;
-  age: string;
+  id: number
+  name: string
+  age: string
 }
 
 export interface HeroState {
-  heros: HeroType[];
-  selectedHero: HeroType | null;
+  heros: HeroType[]
+  selectedHero: HeroType | null
 }
 
 const initialState: HeroState = {
   heros: [],
-  selectedHero: null,
+  selectedHero: null
 };
 
 export const fetchHeros = createAsyncThunk("hero/fetchHeros", async () => {
@@ -52,15 +55,15 @@ export const heroSlice = createSlice({
     },
     addHero: (
       state,
-      action: PayloadAction<{ name: string; age: string }>
+      action: PayloadAction<{ name: string, age: string }>
     ) => {
       const newHero = {
         id: state.heros[state.heros.length - 1].id + 1, // temporary
         name: action.payload.name,
-        age: action.payload.age,
+        age: action.payload.age
       };
       state.heros.push(newHero);
-    },
+    }
   },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
@@ -74,7 +77,7 @@ export const heroSlice = createSlice({
     builder.addCase(postHero.rejected, (_state, action) => {
       console.error(action.error);
     });
-  },
+  }
 });
 
 export const heroActions = heroSlice.actions;

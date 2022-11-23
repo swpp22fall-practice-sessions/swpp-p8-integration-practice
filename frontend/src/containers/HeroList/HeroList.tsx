@@ -4,18 +4,18 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import {
   fetchHeros,
-  selectHero,
+  selectHero
 } from "../../store/slices/hero";
 import "./HeroList.css";
 import { AppDispatch } from "../../store";
 
 interface IProps {
-  title: string;
+  title: string
 }
 
-type HeroType = { id: number; name: string; age: string; };
+interface HeroType { id: number, name: string, age: string };
 
-export default function HeroList(props: IProps) {
+export default function HeroList (props: IProps) {
   const navigate = useNavigate();
   const { title } = props;
 
@@ -28,7 +28,7 @@ export default function HeroList(props: IProps) {
   }, []);
 
   const clickHeroHandler = (hero: HeroType) => {
-    navigate("/heros/" + hero.id);
+    navigate("/heros/" + hero.id.toString());
   };
 
   return (

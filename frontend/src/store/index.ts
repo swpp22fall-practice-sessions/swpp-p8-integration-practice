@@ -3,8 +3,8 @@ import heroReducer from "./slices/hero";
 
 export const store = configureStore({
   reducer: {
-    hero: heroReducer,
-  },
+    hero: heroReducer
+  }
 });
 
 export type RootState = ReturnType<typeof store.getState>;
